@@ -2,23 +2,20 @@ package entity;
 
 import jakarta.persistence.*;
 
+
+import java.time.LocalDate;
+
+
 @Entity
 public class ContractCustomer extends Customer {
 
-    private String contractDetails;
+    private LocalDate startDate = LocalDate.now();
+    private LocalDate endDate;
 
     public ContractCustomer() {}
 
-    public ContractCustomer(String name, String email, String contractDetails) {
+    public ContractCustomer(String name, String email, LocalDate endDate) {
         super(name, email);
-        this.contractDetails = contractDetails;
-    }
-
-    public String getContractDetails() {
-        return contractDetails;
-    }
-
-    public void setContractDetails(String contractDetails) {
-        this.contractDetails = contractDetails;
+        this.endDate = endDate;
     }
 }
