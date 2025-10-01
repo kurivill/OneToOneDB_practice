@@ -14,8 +14,8 @@ public class ContractCustomer extends Customer {
 
     public ContractCustomer() {}
 
-    public ContractCustomer(String name, String email, LocalDate endDate) {
-        super(name, email);
+    public ContractCustomer(String name, String lastName, LocalDate endDate) {
+        super(name, lastName);
         this.endDate = endDate;
     }
 }

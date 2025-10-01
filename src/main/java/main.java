@@ -1,6 +1,8 @@
 import entity.*;
 import DAO.*;
 
+import java.time.LocalDate;
+
 public class main {
 
     public static void main(String[] args) {
@@ -24,6 +26,12 @@ public class main {
         clinicdao.addClinic(clinic2);
         customerdao.addCustomerToClinic(customer2, clinic2);
         customerdao.addCustomerToClinic(customer2, clinic);
+
+        ContractCustomer contractCustomer = new ContractCustomer("Teppo", "Testaaja", LocalDate.now().plusMonths(6));
+        BasicProfile profile3 = new BasicProfile(1985, 85, 185);
+        contractCustomer.setBasicProfile(profile3);
+        customerdao.addCustomer(contractCustomer);
+        customerdao.addCustomerToClinic(contractCustomer, clinic);
 
 
     }
