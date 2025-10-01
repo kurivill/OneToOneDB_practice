@@ -8,27 +8,27 @@ import jakarta.persistence.*;
 public class BasicProfile {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long profileId;
+    private long customerId;
+
     private int birthYear;
     private int weightInKg;
     private int heightInCm;
 
     @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customerId")
+    @MapsId
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public BasicProfile() {}
 
-    public BasicProfile(int birthYear, int weightInKg, int heightInCm, Customer customer) {
+    public BasicProfile(int birthYear, int weightInKg, int heightInCm) {
         this.birthYear = birthYear;
         this.weightInKg = weightInKg;
         this.heightInCm = heightInCm;
-        this.customer = customer;
     }
 
     public long getProfileId() {
-        return profileId;
+        return customerId;
     }
 
     public int getBirthYear() {
@@ -61,7 +61,7 @@ public class BasicProfile {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-        if (customer != null) {
+        if (customer != null && customer.getBasicProfile() != this) {
             customer.setBasicProfile(this);
         }
     }
